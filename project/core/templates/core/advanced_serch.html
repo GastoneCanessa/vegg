@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block heand_title %}{{block.super}} - Advanced Reserch{% endblock heand_title %}
+
+{% block content %}
+   <div id='form1'class="text-center  ">
+      <form  method="POST">
+         {% csrf_token %}
+         {{form|crispy}}
+         <input type="submit" class='btn btn-info' value='confirm'>
+      </form>
+   </div>
+   <div class='container'>
+      <div class="row">
+      {% for post  in dati %}
+      <div id='container1' class="container col-lg-3 d url 'distanza' id=post.id ">
+         <div id='card1' class="card border-dark mb-3" >
+            {% if post.image %}
+               <!--<img src="{{post.immagine.url}}" class="card-img-top" style="max-width:100%;height:350px;" >-->
+               <img id="card-img-1" class="card-img-top" src="{{post.image.url}}" alt="Card image cap">
+            {% endif %}
+            <div class="card-body">
+               <h3><a id='name_author' href="{% url 'user_profile' username=post.author_post %}"><strong>{{post.author_post}}</strong></a></h3>
+               <p><h5>{{post.content}}</h5><h5>{{post.city}}</h5></p>
+               <!--<p>la distanza tra Milano e {{post.citta}} é di {{post.distanza}} KM.</p>-->
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+      </div>
+   </div>
+{% endblock content %}

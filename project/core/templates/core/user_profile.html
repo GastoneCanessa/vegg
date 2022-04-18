@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block heand_title %}Profilo {{user}}{% endblock heand_title %}
+
+{% block content %}
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-6 ">
+            <h1>{% if request.user == user %}Il tuo {% endif %}Profilo Utente</h1>
+            <h1>User: {{user}} </h1>
+         </div>
+         <div class="col-lg-6 ">
+            {% for p in user_ %}
+               <h3>{{p.city}}</h3>
+               <h3>{{p.address}}</h3>
+            {% endfor %}
+         </div>
+      </div>
+      <div class="row">
+         {% for post in user_posts %}
+            <div id='container1' class="col-lg-4 ">
+               <h4>
+                  {% if request.user == post.author_post %}
+                  <a id='name_author' href="{% url 'delate_post' username=request.user.username pk=post.pk %}">elimina</a>
+                  {% endif %}
+               </h4>
+               <div id='card1' class="card border-dark mb-3  " >
+                  {% if post.image %}
+                     <img id="card-img-1" class="card-img-top cover" src="{{post.image.url}}" class="card-img-top" >
+                     <!--<img src="{{post.immagine.url}}" class="card-img-top" style="max-width:100%;height:350px;" >-->
+                  {% endif %}
+                  <div  class="card-body">
+                     <p class="card-text"><h3>{{post.content}}</h3></p>
+                  </div>
+               </div>
+            </div>
+         {% endfor %}
+      </div>
+   </div>
+{% endblock content %}

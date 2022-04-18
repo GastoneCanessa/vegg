@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block heand_title %}{{block.super}} - Map{% endblock heand_title %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6 ">
+    <form  method="POST">
+       {% csrf_token %}
+       {{form|crispy}}
+       <input type="submit" class='btn btn-info' value='confirm'>
+    </form>
+    <br>
+    {{map|safe}}
+    <br>
+    #This product includes GeoLite2 data created by MaxMind, available from
+    <a href="https://www.maxmind.com">https://www.maxmind.com</a>
+  </div>
+</div>
+{% endblock content %}

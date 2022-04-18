@@ -1,0 +1,80 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+   <title>{% block heand_title %}Veggies{% endblock heand_title %}</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+   <body>
+     <nav id='navbar1' class="navbar navbar-expand-lg navbar-light ">
+       <div class="container">
+          <a class="navbar-brand" href="{% url 'home' %}"><h1 id='logo'><strong>VEGGIES</strong></h1></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                   <a class="nav-link active" aria-current="page" href="{% url 'advanced_serch' %}"><h4><strong>Advanced Search</strong></h4></a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link active" aria-current="page" href="{% url 'map' %}"><h4><strong>Map</strong></h4></a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link active" aria-current="page" href="{% url 'user_list' %}"><h4><strong>Users List</strong></h4></a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link active" aria-current="page" href="{% url 'create_post' %}"><h4><strong>Create Post</strong></h4></a>
+                </li>
+                {% if request.user.is_authenticated %}
+                   <li class="nav-item dropdown">
+                      <a  class="nav-link " href="#"  role="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                         <h4 ><strong id="navbarDropdown1" >{{request.user.username}}</strong></h4>
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                         <li><a class="dropdown-item" href="{% url 'user_profile' username=request.user.username %}"><h4><strong>Profile</strong></h4></a></li>
+                         <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+                         <li><hr class="dropdown-divider"></li>
+                         <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                      </ul>
+                   </li>
+                {% else %}
+                   <li class="nav-item">
+                      <a class="nav-link" href="{% url 'registration_view' %}"><h4 ><strong id="navbarDropdown1" >Registration</strong></h4></a>
+                   </li>
+                   <li class="nav-item">
+                      <a class="nav-link" href="{% url 'login' %}"><h4 ><strong id="navbarDropdown1" >Login</strong></h4></a>
+                  </li>
+                {% endif %}
+             </ul>
+          </div>
+       </div>
+     </nav>
+     <div class="contenuto">
+     {% block content %}
+
+     {% endblock content %}
+     </div>
+     <!-- Optional JavaScript; choose one of the two! -->
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+     <!-- Option 2: Separate Popper and Bootstrap JS -->
+     <!--
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+     -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Yuji+Boku&display=swap" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap" rel="stylesheet">
+   </body>
+</html>

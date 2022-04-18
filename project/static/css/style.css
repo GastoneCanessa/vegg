@@ -1,0 +1,46 @@
+h1,h2,h3,h4,h5,a,p{
+ font-family: 'Plus Jakarta Sans', serif;
+ color:black;
+}
+img{
+ object-fit: cover;
+}
+.contenuto{
+ min-height: 90%;
+ padding-top: 40px;
+ padding-bottom: 40px;
+}
+#navbar1{
+ background:#90a955;
+}
+#navbarDropdown1{
+  color:white;
+}
+#logo{
+ font-family: 'Yuji Boku', serif;
+ color:white;
+}
+#row1{
+ margin-left: 50px;
+ margin-right: 50px;
+}
+#container1{
+ padding-top: 20px;
+ padding-bottom: 40px;
+ margin-left: 0px;
+ margin-right: 0px;
+}
+#card1{
+ height: 400px;
+}
+#card-img-1{
+ height: 250px;
+}
+#name_author{
+ text-decoration:none;
+}
+#form1{
+ margin-left: 200px;
+ margin-right: 200px;
+ padding-bottom: 40px;
+}

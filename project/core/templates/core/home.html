@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block heand_title %}{{block.super}} - Home{% endblock heand_title %}
+
+{% block content %}
+   <div class="container">
+      <div id="row1" class="row">
+         {% for post in posts %}
+            <div id="container1" class="col-lg-4" >
+               <div id='card1' class="card border-greey mb-3  " >
+                  {% if post.image %}
+                     <img id="card-img-1" class="card-img-top-fluid cover" src="{{post.image.url}}" alt="Card image cap">
+
+                  {% endif %}
+                  <div  class="card-body">
+                     <h2><a id='name_author' href="{% url 'user_profile' username=post.author_post %}"><strong>{{post.author_post}}</strong></a>
+                     <p class="card-text"><h3>{{post.content}}</h3></p>
+                  </div>
+               </div>
+            </div>
+         {% endfor %}
+      </div>
+   </div>
+{% endblock content %}
